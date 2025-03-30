@@ -70,8 +70,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
-        // 🔽ここに追加！
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w("FCM_TOKEN", "トークン取得失敗", task.exception)
