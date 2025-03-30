@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493996131755",
+    "project_id": "mypushapp-15559",
+    "storage_bucket": "mypushapp-15559.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493996131755:android:924a33aef93bbaed90beee",
+        "android_client_info": {
+          "package_name": "com.websarva.wings.android.wearnotification"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApOFa8w3T0OE88nKVuBi_p1zwFW9TO-jc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
