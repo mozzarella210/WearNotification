@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
@@ -41,6 +44,7 @@
             </intent-filter>
         </activity>
 
+        <!-- Firebase Messagingのサービス -->
         <service
             android:name="com.websarva.wings.android.wearnotification.firebase.MyFirebaseMessagingService"
             android:exported="false">
@@ -48,6 +52,12 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <service
+            android:name=".health.HeartRateMonitorService"
+            android:exported="false"
+            android:foregroundServiceType="health"
+            tools:ignore="ForegroundServicePermission" />
 
     </application>
 

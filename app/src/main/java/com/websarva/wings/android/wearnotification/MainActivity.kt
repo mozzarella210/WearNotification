@@ -1,6 +1,7 @@
 package com.websarva.wings.android.wearnotification
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +21,7 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.google.firebase.messaging.FirebaseMessaging
+import com.websarva.wings.android.wearnotification.health.HeartRateMonitorService
 import com.websarva.wings.android.wearnotification.screens.*
 import com.websarva.wings.android.wearnotification.screens.SplashScreen
 import com.websarva.wings.android.wearnotification.ui.theme.WearNotificationTheme
@@ -32,6 +34,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.BODY_SENSORS), 1002)
+        }
+
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.POST_NOTIFICATIONS
@@ -43,6 +49,9 @@ class MainActivity : ComponentActivity() {
                 1001
             )
         }
+
+        val serviceIntent = Intent(this, HeartRateMonitorService::class.java)
+        ContextCompat.startForegroundService(this, serviceIntent)
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (!task.isSuccessful) {
